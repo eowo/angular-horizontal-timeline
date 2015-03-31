@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<!-- bower:js -->
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/moment/moment.js"></script>
+<script src="vendor/moment-range/lib/moment-range.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<!-- endbower -->
+
+<!-- bower:css -->
+<!-- endbower -->
+
+<script src="angular-horizontal-timeline.js"></script>
+<link rel="stylesheet" href="angular-horizontal-timeline.css">
+<style type="text/css">
+body {
+  margin: 0;
+}
+</style>
+
+<script type="text/javascript">
+var demoApp = angular.module('demoApp', ['angular-horizontal-timeline']);
+
+demoApp.controller('demoCtrl', function ($scope) {
+  $scope.startDate = moment().subtract(2, 'months').format('YYYY-MM');
+  $scope.endDate = moment().add(2, 'months').format('YYYY-MM');
+  $scope.events = [{'date': moment().subtract(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'}, 
+                   {'date': moment().add(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'}];
+});
+</script>
+</head>
+<body ng-app="demoApp" ng-controller="demoCtrl">
+
+	<horizontal-timeline 
+		start-date="{{startDate}}" 
+		end-date="{{endDate}}"
+		events="events">
+	</horizontal-timeline>
+	
+</body>
+</html>

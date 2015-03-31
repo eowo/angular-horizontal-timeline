@@ -1,0 +1,29 @@
+{
+  "name": "angular-horizontal-timeline",
+  "main": ["angular-horizontal-timeline.js","angular-horizontal-timeline.css"],
+  "version": "0.0.1",
+  "authors": [
+    "eowo"
+  ],
+  "description": "Angular JS horizontal timeline",
+  "keywords": [
+    "angular",
+    "horizontal",
+    "timeline"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/eowo/angular-horizontal-timeline",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "moment": "~2.9.0",
+    "moment-range": "~1.0.7",
+    "angular-sanitize": "~1.3.15"
+  }
+}
