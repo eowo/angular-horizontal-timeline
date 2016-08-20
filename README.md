@@ -10,6 +10,13 @@ You can download all necessary angular-horizontal-timeline files manually or ins
 ```
 $ bower install --save angular-horizontal-timeline
 ```
+# Dependencies
+The directive uses [moment](https://github.com/moment/moment) and [moment-range](https://github.com/gf3/moment-range):
+
+```
+<script src="moment.js"></script>
+<script src="moment-range.js"></script>
+```
 
 # Load
 To use the directive, include the angular-horizontal-timeline's javascript and css files in your web page:
