@@ -58,12 +58,15 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'])
 
 .directive('horizontalTimeline', function(){
 	function controller($scope){
+
+		$scope.format = $scope.format || 'YYYY-MM-DD';
+
 		$scope.selectedEvent = [];
 		$scope.months= [];
 
 		$scope.getPosition = function(date){
-			date = moment(date);
-			var diff = date.diff(moment($scope.startDate), 'months');
+			date = moment(date, $scope.format);
+			var diff = date.diff(moment($scope.startDate, $scope.format), 'months');
 			var curWeekWidth = 100/$scope.months[diff].days.length;
 			var monthsWidth = 100/$scope.months.length;
 			var ixOfWeek = Math.ceil(date.format('D')/7) - 1;
@@ -72,20 +75,20 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'])
 			return ( (monthsWidth * diff) + (((ixOfWeek * curWeekWidth) + (curDOfMPercent / 100 * curWeekWidth)) / 100 * monthsWidth) );
 		};
 
-		var range  = moment().range(moment($scope.startDate), moment($scope.endDate));
+		var range  = moment().range(moment($scope.startDate, $scope.format), moment($scope.endDate, $scope.format));
 		range.by('months', function(month) {
 			$scope.months.push({
-				'date':month.format('YYYY-MM'),
+				'date':month.format('MM-YYYY'),
 				'name':month.format('MMMM'),
 				'days':[]});
 
-			var dayrange = moment().range(month.startOf('month').format('YYYY-MM-DD'), month.endOf('month').format('YYYY-MM-DD'));
+			var dayrange = moment().range(moment(month.startOf('month'), $scope.format), moment(month.endOf('month') ,$scope.format));
 			dayrange.by('weeks', function(week) {
 				$scope.months[$scope.months.length - 1].days.push(week.format('DD'));
 			});
 		});
 
-		$scope.progress_percent = $scope.getPosition(moment().format('YYYY-MM-DD'));
+		$scope.progress_percent = $scope.getPosition(moment().format($scope.format));
 	}
 
 	return {
@@ -94,7 +97,8 @@ angular.module('angular-horizontal-timeline', ['ngSanitize'])
 		scope: {
 			startDate: '@',
 			endDate: '@',
-			events: '='
+			events: '=',
+			format: '@'
 		},
 		template:template
 	};
