@@ -1,6 +1,6 @@
 {
   "name": "angular-horizontal-timeline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular JS horizontal timeline",
   "main": "Gruntfile.js",
   "dependencies": {

@@ -23,22 +23,23 @@ body {
 
 <script type="text/javascript">
 var demoApp = angular.module('demoApp', ['angular-horizontal-timeline']);
-
-demoApp.controller('demoCtrl', function ($scope) {
-  $scope.startDate = moment().subtract(2, 'months').format('YYYY-MM-DD');
-  $scope.endDate = moment().add(2, 'months').format('YYYY-MM-DD');
-  $scope.events = [{'date': moment().subtract(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'}, 
-                   {'date': moment().add(7, 'days').format('YYYY-MM-DD'), 'content':'<p>lorem ipsum</p>'}];
-});
+demoApp.controller('demoCtrl', ['$scope', function ($scope) {
+  $scope.format = 'YYYY-MM-DD';
+  $scope.startDate = moment().subtract(2, 'months').format($scope.format);
+  $scope.endDate = moment().add(2, 'months').format($scope.format);
+  $scope.events = [{'date': moment().subtract(7, 'days').format($scope.format), 'content':'<p>lorem ipsum</p>'},
+                   {'date': moment().add(7, 'days').format($scope.format), 'content':'<p>lorem ipsum</p>'}];
+}]);
 </script>
 </head>
-<body ng-app="demoApp" ng-controller="demoCtrl">
+<body ng-app="demoApp" ng-controller="demoCtrl" ng-strict-di>
 
-	<horizontal-timeline 
-		start-date="{{startDate}}" 
+	<horizontal-timeline
+		start-date="{{startDate}}"
 		end-date="{{endDate}}"
-		events="events">
+		format="{{format}}"
+    events="events">
 	</horizontal-timeline>
-	
+
 </body>
 </html>
