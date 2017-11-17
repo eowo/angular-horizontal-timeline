@@ -13,7 +13,7 @@ var template =
 	'	<label>{{startDate}}</label>' +
 	'</div>' +
 	'<div class="timeline-center">' +
-	'<div class="progress">' +
+	'<div class="timeline-progress">' +
 	'	<span ng-style="{width:progress_percent+\'%\'}"></span>' +
 	'	<ul class="timeline-events">' +
 	'		<li class="timeline-event" ng-repeat="event in events"' +
